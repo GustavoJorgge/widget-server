@@ -84,16 +84,6 @@ jobs:
           tags: |
             ${{steps.login-ecr.outputs.registry}}/${{ vars.ECR_REPOSITORY }}:${{ steps.generate_tag.outputs.sha }}
 
-      # - name: Build and Push the image to AWS ECR
-      #   id: build-push-imagem
-      #   env:
-      #     ECR_REGISTRY: ${{steps.login-ecr.outputs.registry}}
-      #     ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-      #     IMAGE_TAG: ${{ steps.generate_tag.outputs.sha }}
-      #   run: |
-      #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
       - name: Render task definition
         id: render-task-definition
         uses: aws-actions/amazon-ecs-render-task-definition@v1
